@@ -38,12 +38,14 @@ int main() {
     else {
       parent_node->child = current_node;
     }
+    process = NULL;
     free(name_list[i]);
   }
   free(name_list);
 
   print_process_node(root_node->child, 0);
   destroy_process_node(root_node);
+
   for(i = 0; i < max_proc; i++) {
     // all the process nodes are already freed by destroy_process_node
     node_array[i] = NULL;

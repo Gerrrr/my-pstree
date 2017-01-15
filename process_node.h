@@ -1,3 +1,6 @@
+#ifndef PROCESS_NODE_H
+#define PROCESS_NODE_H
+
 #include "process.h"
 
 typedef struct ProcessNode {
@@ -19,3 +22,5 @@ ProcessNodeLinkedList_t *create_process_node_ll(ProcessNode_t *node);
 ProcessNodeLinkedList_t *add_process_node_to_ll(
   ProcessNodeLinkedList_t *current,
   ProcessNode_t *node);
+
+#endif

@@ -19,7 +19,7 @@ int create_process(char *pid, Process_t **process) {
   */
 
   const char status_path_template[] = "/proc/%s/status";
-  const int status_path_template_len = strlen(status_path_template);
+  const int status_path_template_len = strlen(status_path_template) + 1;
   const int pid_len = strlen(pid);
   const int status_path_len = status_path_template_len + pid_len - 2;
 

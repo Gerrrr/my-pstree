@@ -10,7 +10,7 @@
 
 #define BUF_SIZE 100
 
-int create_process(char *pid, Process_t **process) {
+int create_process(char *pid, Process_t **result) {
   /*
   pid: pid of the process whose information is to be read
   process: pointer to the process to be created
@@ -26,9 +26,9 @@ int create_process(char *pid, Process_t **process) {
   char status_path[status_path_len];
   char error_msg[BUF_SIZE];
 
-  Process_t *p = (Process_t *)malloc(sizeof(Process_t));
-  assert(p != NULL);
-  p->pid = atoi(pid);
+  Process_t *process = (Process_t *)malloc(sizeof(Process_t));
+  assert(process != NULL);
+  process->pid = atoi(pid);
 
   sprintf(status_path, status_path_template, pid);
 
@@ -58,15 +58,15 @@ int create_process(char *pid, Process_t **process) {
       char delimiter[] = "Name:\t";
       delimiter_len = strlen(delimiter);
       substring = strstr(buf, delimiter);
-      p->name = (char *) malloc(strlen(substring) - delimiter_len + 1);
-      assert(p->name != NULL);
-      strcpy(p->name, substring + delimiter_len);
+      process->name = (char *) malloc(strlen(substring) - delimiter_len + 1);
+      assert(process->name != NULL);
+      strcpy(process->name, substring + delimiter_len);
     }
     else if(starts_with(buf, "PPid:")) {
       char delimiter[] = "PPid:\t";
       delimiter_len = strlen(delimiter);
       substring = strstr(buf, delimiter);
-      p->ppid = atoi(substring + delimiter_len);
+      process->ppid = atoi(substring + delimiter_len);
     }
   }
 
@@ -75,7 +75,7 @@ int create_process(char *pid, Process_t **process) {
     perror(error_msg);
     return 1;
   }
-  *process = p;
+  *result = process;
   return 0;
 }
 

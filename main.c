@@ -11,7 +11,8 @@
 int main() {
   const char proc_path[] = "/proc";
   struct dirent **name_list;
-  int i, dir_count;
+  int i;
+  int dir_count;
   int err;
   int max_proc;
 

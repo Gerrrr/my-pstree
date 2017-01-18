@@ -12,8 +12,10 @@
 
 int create_process(char *pid, Process_t **result) {
   /*
+  creates a new process and assigns it to the passed pointer
+
   pid: pid of the process whose information is to be read
-  process: pointer to the process to be created
+  result: pointer to the process to be created
 
   returns: 0 upon successfull execution and 1 otherwise
   */
@@ -79,17 +81,24 @@ int create_process(char *pid, Process_t **result) {
   return 0;
 }
 
-void destroy_process(Process_t *p)
-{
-    assert(p != NULL);
-    if(p->name) {
-      free(p->name);
-      p->name = NULL;
-    }
-    free(p);
+void destroy_process(Process_t *p) {
+  /*
+  Destroys the process
+  */
+
+  assert(p != NULL);
+  if(p->name) {
+    free(p->name);
+    p->name = NULL;
+  }
+  free(p);
 }
 
 void print_process(Process_t *p, int num_indents) {
+  /*
+  prints the process
+  */
+
   int i = 0;
   printf("|");
   for(i = 0; i < num_indents; i++) {
